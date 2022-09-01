@@ -1,41 +1,63 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 32px;
+	text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.bank-account-action {
+	display: flex;
+	justify-content: center;
+	margin: 32px 0;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.bank-account-action-mode {
+	padding: var(--sp-input);
+	font-weight: bold;
+	background-color: var(--black);
+	min-width: 6em;
+	cursor: pointer;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.bank-account-action-mode:first-child {
+	border-top-left-radius: var(--radius-input);
+	border-bottom-left-radius: var(--radius-input);
 }
 
-.card {
-  padding: 2em;
+.bank-account-action-mode:last-child {
+	border-top-right-radius: var(--radius-input);
+	border-bottom-right-radius: var(--radius-input);
 }
 
-.read-the-docs {
-  color: #888;
+.checked-radio {
+	background-color: var(--primary-color);
+}
+
+.bank-account-action-mode input {
+	position: absolute;
+	left: -200vw;
+}
+
+.balance-form {
+	display: flex;
+	justify-content: space-evenly;
+	max-width: 18rem;
+	margin: auto;
+}
+
+.balance-input {
+	padding: var(--sp-input);
+	border-radius: var(--radius-input);
+	border-color: var(--white);
+}
+
+.balance-input:focus {
+	border-color: var(--primary-color);
+	outline: none;
+}
+
+.input-error {
+	color: var(--error-color);
+	margin-top: var(--sp-input);
+	display: block;
 }
