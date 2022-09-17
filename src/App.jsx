@@ -1,9 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import BankAccountAction from "./components/BankAccountAction";
 
-function App() {
-	const [currentBalance, setCurrentBalance] = useState(0);
+function App({ initialBalance = 0 }) {
+	const [currentBalance, setCurrentBalance] = useState(initialBalance);
 
 	return (
 		<div className="App">
