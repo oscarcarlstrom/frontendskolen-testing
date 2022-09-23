@@ -10,7 +10,8 @@
 		"preview": "vite preview",
 		"test": "jest",
 		"test:unit": "jest --testPathPattern=unit",
-		"test:integration": "jest --testPathPattern=integration"
+		"test:integration": "jest --testPathPattern=integration",
+		"test:coverage": "jest --collect-coverage"
 	},
 	"dependencies": {
 		"react": "^18.2.0",
