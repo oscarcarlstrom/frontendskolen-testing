@@ -3,6 +3,8 @@ import "@testing-library/jest-dom";
 import { fireEvent, render } from "@testing-library/react";
 import App from "../../src/App";
 
+jest.mock("../../src/api/updateBalance");
+
 test("should have a top level heading", () => {
 	const { getByRole } = render(<App />);
 	expect(
