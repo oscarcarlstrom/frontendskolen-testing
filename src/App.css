@@ -56,8 +56,14 @@
 	outline: none;
 }
 
-.input-error {
+.error {
 	color: var(--error-color);
+	margin-top: var(--sp-input);
+	display: block;
+}
+
+.success {
+	color: var(--success-color);
 	margin-top: var(--sp-input);
 	display: block;
 }

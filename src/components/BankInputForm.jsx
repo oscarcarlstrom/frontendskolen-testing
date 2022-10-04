@@ -49,7 +49,7 @@ const BankInputForm = ({
 				/>
 				<button formNoValidate>OK</button>
 			</form>
-			<strong id={inputErrorId} className="input-error">
+			<strong id={inputErrorId} className="error">
 				{validationError}
 			</strong>
 		</>
