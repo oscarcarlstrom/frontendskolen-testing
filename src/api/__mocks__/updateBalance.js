@@ -1,1 +1,4 @@
-export const updateBalance = (amount) => Promise.resolve({ amount });
+export const updateBalance = jest.fn((amount) => ({
+	request: Promise.resolve({ amount }),
+	abortRequest: jest.fn(),
+}));

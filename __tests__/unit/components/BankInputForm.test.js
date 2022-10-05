@@ -8,19 +8,24 @@ test("should be possible to withdraw", () => {
 	const setCurrentBalanceMock = jest.fn((amount) => {
 		currentBalance += amount;
 	});
+	const onChangeHandlerMock = jest.fn();
 	const { getByLabelText, getByText } = render(
 		<BankInputForm
 			currentBalance={currentBalance}
 			setCurrentBalance={setCurrentBalanceMock}
 			mode="withdraw"
+			onChangeHandler={onChangeHandlerMock}
 		/>
 	);
+
 	fireEvent.change(
 		getByLabelText("Please enter the amount you wish to withdraw"),
 		{ target: { value: "100" } }
 	);
 	fireEvent.click(getByText("OK"));
-	expect(setCurrentBalanceMock).toHaveBeenCalled();
+
+	expect(setCurrentBalanceMock).toHaveBeenCalledWith(-100);
+	expect(onChangeHandlerMock).toHaveBeenCalled();
 	expect(currentBalance).toBe(400);
 });
 
@@ -29,18 +34,23 @@ test("should be possible to deposit", () => {
 	const setCurrentBalanceMock = jest.fn((amount) => {
 		currentBalance += amount;
 	});
+	const onChangeHandlerMock = jest.fn();
 	const { getByLabelText, getByText } = render(
 		<BankInputForm
 			currentBalance={currentBalance}
 			setCurrentBalance={setCurrentBalanceMock}
 			mode="deposit"
+			onChangeHandler={onChangeHandlerMock}
 		/>
 	);
+
 	fireEvent.change(
 		getByLabelText("Please enter the amount you wish to deposit"),
 		{ target: { value: "100" } }
 	);
 	fireEvent.click(getByText("OK"));
-	expect(setCurrentBalanceMock).toHaveBeenCalled();
+
+	expect(setCurrentBalanceMock).toHaveBeenCalledWith(100);
+	expect(onChangeHandlerMock).toHaveBeenCalled();
 	expect(currentBalance).toBe(600);
 });
