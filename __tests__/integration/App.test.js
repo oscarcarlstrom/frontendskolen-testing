@@ -5,7 +5,15 @@ import App from "../../src/App";
 // This import is required to change the mock implementation in some tests
 import { updateBalance } from "../../src/api/updateBalance";
 
-jest.mock("../../src/api/updateBalance");
+jest.mock("../../src/api/updateBalance"); // Requires ../../src/api/updateBalance/__mocks__/updateBalance
+
+// Alternative way to mock
+// jest.mock("../../src/api/updateBalance", () => ({
+// 	updateBalance: jest.fn((amount) => ({
+// 		request: Promise.resolve({ amount }),
+// 		abortRequest: jest.fn(),
+// 	})),
+// }));
 
 test("should have a top level heading", () => {
 	const { getByRole } = render(<App />);
