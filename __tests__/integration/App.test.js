@@ -30,38 +30,47 @@ test("should show current balance", () => {
 });
 
 test("should show correct balance when making a withdrawal", async () => {
-	const { getByLabelText, getByText } = render(<App initialBalance={500} />);
+	const initialBalance = 500;
+	const { getByLabelText, getByText } = render(
+		<App initialBalance={initialBalance} />
+	);
 
+	const withdrawal = 100;
 	fireEvent.change(
 		getByLabelText("Please enter the amount you wish to withdraw"),
-		{ target: { value: "100" } }
+		{ target: { value: withdrawal.toString() } }
 	);
 	fireEvent.click(getByText("OK"));
 
 	await waitFor(() => {
 		// Wait for mock API Promise to resolve
-		expect(getByText("New blance was set to 400!")).toBeInTheDocument();
+		expect(
+			getByText(`New blance was set to ${initialBalance - withdrawal}!`)
+		).toBeInTheDocument();
 	});
 
-	expect(getByText("Your balance is 400")).toBeInTheDocument();
+	expect(
+		getByText(`Your balance is ${initialBalance - withdrawal}`)
+	).toBeInTheDocument();
 });
 
 test("should show correct balance when making a deposit", async () => {
 	const { getByLabelText, getByText } = render(<App />);
 
 	fireEvent.click(getByText("Deposit"));
+	const deposit = 100;
 	fireEvent.change(
 		getByLabelText("Please enter the amount you wish to deposit"),
-		{ target: { value: "100" } }
+		{ target: { value: deposit.toString() } }
 	);
 	fireEvent.click(getByText("OK"));
 
 	await waitFor(() => {
 		// Wait for mock API Promise to resolve
-		expect(getByText("New blance was set to 100!")).toBeInTheDocument();
+		expect(getByText(`New blance was set to ${deposit}!`)).toBeInTheDocument();
 	});
 
-	expect(getByText("Your balance is 100")).toBeInTheDocument();
+	expect(getByText(`Your balance is ${deposit}`)).toBeInTheDocument();
 });
 
 test("should an error message when making an invalid withdrawal", () => {
@@ -97,6 +106,7 @@ test("should show an error when something goes wrong with the http request", asy
 		abortRequest: jest.fn(),
 	}));
 
+	const initialBalance = 500;
 	const { getByLabelText, getByText } = render(<App initialBalance={500} />);
 
 	fireEvent.change(
@@ -110,5 +120,5 @@ test("should show an error when something goes wrong with the http request", asy
 		expect(getByText(errorMessage)).toBeInTheDocument();
 	});
 
-	expect(getByText("Your balance is 500")).toBeInTheDocument();
+	expect(getByText(`Your balance is ${initialBalance}`)).toBeInTheDocument();
 });
