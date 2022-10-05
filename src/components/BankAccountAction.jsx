@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import BankAccountActionMode from "./BankAccountActionMode";
 import BankInputForm from "./BankInputForm";
 
-const BankAccountAction = ({ currentBalance, setCurrentBalance }) => {
+const BankAccountAction = ({
+	currentBalance,
+	setCurrentBalance,
+	onBankInputFormChange,
+}) => {
 	const [mode, setMode] = useState("withdraw");
 	return (
 		<>
@@ -24,6 +28,7 @@ const BankAccountAction = ({ currentBalance, setCurrentBalance }) => {
 				currentBalance={currentBalance}
 				setCurrentBalance={setCurrentBalance}
 				mode={mode}
+				onChangeHandler={onBankInputFormChange}
 			/>
 		</>
 	);

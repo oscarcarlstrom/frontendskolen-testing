@@ -4,6 +4,7 @@ import { validateTransaction } from "../utils/validation";
 const BankInputForm = ({
 	currentBalance,
 	setCurrentBalance,
+	onChangeHandler,
 	mode = "withdraw",
 }) => {
 	const [amount, setAmount] = useState("");
@@ -36,7 +37,9 @@ const BankInputForm = ({
 					className="balance-input"
 					value={amount.toString().replaceAll(",", ".")}
 					onChange={(event) => {
-						setAmount(parseFloat(event.target.value));
+						onChangeHandler();
+						const { value } = event.target;
+						setAmount(value.length ? parseFloat(value) : value);
 					}}
 					onKeyDown={(event) => {
 						if (event.key !== ".") return;

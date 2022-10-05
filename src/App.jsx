@@ -5,16 +5,20 @@ import BankAccountAction from "./components/BankAccountAction";
 
 function App({ initialBalance = 0 }) {
 	const [currentBalance, setCurrentBalance] = useState(initialBalance);
-	const [userChangedBalance, setUserChangedBalance] = useState(initialBalance);
+	const [previousBalance, setPreviousBalance] = useState(initialBalance);
 
 	const [requestSuccess, setRequestSuccess] = useState();
 	const [requestError, setRequestError] = useState();
 
-	useEffect(() => {
-		if (!userChangedBalance) return; // React 18 dev mode workaround
-
+	const resetStatusMessages = () => {
 		setRequestSuccess(undefined);
 		setRequestError(undefined);
+	};
+
+	useEffect(() => {
+		if (currentBalance === previousBalance) return;
+
+		resetStatusMessages();
 
 		const { request, abortRequest } = updateBalance(currentBalance);
 		request
@@ -23,10 +27,11 @@ function App({ initialBalance = 0 }) {
 			})
 			.catch(({ message }) => {
 				setRequestError(message);
+				setCurrentBalance(previousBalance);
 			});
 
 		return abortRequest;
-	}, [currentBalance, userChangedBalance]);
+	}, [currentBalance]);
 
 	const status = requestError ? (
 		<p className="error">
@@ -47,9 +52,10 @@ function App({ initialBalance = 0 }) {
 			<BankAccountAction
 				currentBalance={currentBalance}
 				setCurrentBalance={(amount) => {
-					setUserChangedBalance(true); // React 18 dev mode workaround
+					setPreviousBalance(currentBalance); // React 18 dev mode workaround
 					setCurrentBalance((balance) => amount + balance);
 				}}
+				onBankInputFormChange={resetStatusMessages}
 			/>
 			{status}
 		</div>
