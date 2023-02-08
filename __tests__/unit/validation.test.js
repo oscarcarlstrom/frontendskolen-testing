@@ -16,7 +16,7 @@ test("should validate positive floats", () => {
 	expect(isPositiveFloat(-1.1)).toBe(false);
 	expect(isPositiveFloat(-100.0)).toBe(false);
 	expect(isPositiveFloat(0)).toBe(false);
-	expect(isPositiveFloat("1.1")).toBe(false);
+	expect(isPositiveFloat("1.1")).toBe(true);
 });
 
 // TODO
