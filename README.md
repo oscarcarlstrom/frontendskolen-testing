@@ -13,7 +13,7 @@ For å kjøre tester, kjør `npm t` eller `npm test`
 ## Hvordan ble Jest og testing-library satt opp?
 
 1. `npm i jest -D`
-2. `npm install --save-dev @babel/plugin-transform-modules-commonjs` - dette er fordi Vite bruker ES modules, og jest CommonJS
+2. `npm i @babel/plugin-transform-modules-commonjs -D` - dette er fordi Vite bruker ES modules, og jest CommonJS
 3. La til [.babelrc](.babelrc), og følgende config:
 
 ```
