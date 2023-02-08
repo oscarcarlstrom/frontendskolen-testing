@@ -34,3 +34,9 @@ test("should be possible to make a withdrawal", () => {
 
 // TODO
 // Test 2: should be possible to make a deposit
+
+// TODO
+// Test 3: should be accept decimal numbers
+
+// TODO
+// Test 4: should be be possible to use "," as decimal separator
