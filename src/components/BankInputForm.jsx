@@ -39,7 +39,7 @@ const BankInputForm = ({
 					onChange={(event) => {
 						onChangeHandler();
 						const { value } = event.target;
-						setAmount(value.length ? parseFloat(value) : value);
+						setAmount(value.length ? parseFloat(value) : value + 10);
 					}}
 					onKeyDown={(event) => {
 						if (event.key !== ".") return;
